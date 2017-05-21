@@ -1,9 +1,9 @@
 doi/global-styling:
   css:
     theme:
-      https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css: { type: external }
+      css/bootstrap.min.css: {}
       css/style.css: {}
   js:
-    https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js: { type: external }
+    js/bootstrap.min.js: {}
   dependencies:
     - core/jquery
