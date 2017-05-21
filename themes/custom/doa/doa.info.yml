@@ -2,7 +2,8 @@ name: DOA
 type: theme
 description: 'Custom theme for DOA'
 core: 8.x
-version: '8.3.2'
+package: Custom
+version: 1.0
 libraries:
   - doa/global-styling
 base theme: stable
