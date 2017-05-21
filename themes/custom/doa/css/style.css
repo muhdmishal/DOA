@@ -27,3 +27,14 @@
   background-size: cover;
   background-position: center;
 }
+.banner-search label {
+  display: none;
+}
+.banner-search h2 {
+  font-family: 'Bebas Neue';
+  font-size: 30px;
+}
+
+.banner-search input:not([type="submit"]) {
+  padding: 10px;
+}
