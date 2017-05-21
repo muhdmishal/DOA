@@ -1,4 +1,5 @@
 doi/global-styling:
+  version: VERSION
   css:
     theme:
       css/bootstrap.min.css: {}
