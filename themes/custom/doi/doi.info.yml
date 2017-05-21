@@ -9,8 +9,9 @@ regions:
   header: Header
   banner: Banner
   content: Content
-  sidebar: 'Sidebar'
+  sidebar: Sidebar
   footer: Footer
+  hidden: Hidden
 stylesheets-remove:
   - '@stable/css/components/tabs.css'
   - core/assets/vendor/normalize-css/normalize.css
