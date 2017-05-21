@@ -33,8 +33,9 @@
 }
 .banner-search h2 {
   font-family: 'Bebas Neue';
-  font-size: 30px;
+  font-size: 40px;
   text-align: center;
+  color: white;
 }
 
 .banner-search form div:first-child {
@@ -56,6 +57,6 @@
   background-repeat: no-repeat;
   color: #000000;
   cursor: pointer;
-  padding: 10px;
+  padding: 10px 0;
   color: transparent;
 }
