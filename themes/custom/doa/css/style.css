@@ -28,21 +28,18 @@
   background-position: center;
 }
 
-.banner-search {
-  width: 438px;
-  margin: auto;
-  max-width: 100%;
-}
 .banner-search label {
   display: none;
 }
 .banner-search h2 {
   font-family: 'Bebas Neue';
   font-size: 30px;
+  text-align: center;
 }
 
 .banner-search form div:first-child {
   width: calc(100% - 50px);
+  float: left;
 }
 .banner-search form div:first-child input {
   padding: 10px;
@@ -50,13 +47,15 @@
 }
 .banner-search form div:nth-child(2) {
   width: 50px;
+  float: left;
 }
 .banner-search form div:nth-child(2) input {
-  background: url("../images/searchbutton.png") no-repeat scroll 0 0 transparent;
+  background: url(../images/searchbutton.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #000000;
   cursor: pointer;
-  font-weight: bold;
-  height: 20px;
-  padding-bottom: 2px;
-  width: 75px;
+  padding: 10px;
+  color: transparent;
 }
