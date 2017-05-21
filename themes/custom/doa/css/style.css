@@ -44,10 +44,19 @@
 .banner-search form div:first-child {
   width: calc(100% - 50px);
 }
-.banner-search form div:first-child {
+.banner-search form div:first-child input {
   padding: 10px;
-  width: calc(100% - 50px);
+  width: 100%;
 }
 .banner-search form div:nth-child(2) {
   width: 50px;
+}
+.banner-search form div:nth-child(2) input {
+  background: url("../images/searchbutton.png") no-repeat scroll 0 0 transparent;
+  color: #000000;
+  cursor: pointer;
+  font-weight: bold;
+  height: 20px;
+  padding-bottom: 2px;
+  width: 75px;
 }
