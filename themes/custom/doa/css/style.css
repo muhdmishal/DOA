@@ -17,3 +17,7 @@
   color: #141213;
   background: white;
 }
+.logo a:hover {
+  opacity: 0.9;
+  text-decoration: none;
+}
