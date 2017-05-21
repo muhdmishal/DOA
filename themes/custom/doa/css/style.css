@@ -41,10 +41,10 @@
   font-size: 30px;
 }
 
-.banner-search input:not([type="submit"]) {
+.banner-search form div:first-child {
   padding: 10px;
   width: calc(100% - 50px);
 }
-.banner-search input[type="submit"] {
+.banner-search form div:nth-child(2) {
   width: 50px;
 }
