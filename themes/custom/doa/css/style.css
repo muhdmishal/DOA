@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url("fonts/BebasNeue.otf") format("opentype");
+}
+.navbar-inverse {
+  font-family: 'Bebas Neue';
+  background-color: #141213;
+  border-color: #141213;
+}
