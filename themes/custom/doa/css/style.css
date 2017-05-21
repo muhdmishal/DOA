@@ -27,7 +27,11 @@
   background-size: cover;
   background-position: center;
 }
-
+.banner-bg .row {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 50px;
+}
 .banner-search label {
   display: none;
 }
@@ -49,6 +53,7 @@
   width: 100%;
   border: none;
   font-size: 30px;
+  background: rgba(255,255,255,.6);
 }
 .banner-search form div:nth-child(2) {
   width: 100px;
@@ -67,4 +72,16 @@
   color: transparent;
   border: none;
   font-size: 30px;
+}
+
+.more-info {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 25px 10px;
+}
+.more-info h2 {
+  font-family: 'Bebas Neue';
+  font-size: 40px;
+  text-align: center;
+  color: white;
 }
