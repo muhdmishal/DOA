@@ -21,3 +21,9 @@
   opacity: 0.9;
   text-decoration: none;
 }
+.banner-bg {
+  background-image: url('../images/banner.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
