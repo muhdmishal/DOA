@@ -42,6 +42,9 @@
 }
 
 .banner-search form div:first-child {
+  width: calc(100% - 50px);
+}
+.banner-search form div:first-child {
   padding: 10px;
   width: calc(100% - 50px);
 }

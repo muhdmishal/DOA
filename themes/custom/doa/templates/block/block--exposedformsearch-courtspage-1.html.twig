@@ -25,9 +25,11 @@
  * @see template_preprocess_block()
  */
 #}
-<div{{ attributes.addClass('banner-search') }}>
-  <h2>Find A Court</h2>
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+<div class="row">
+  <div{{ attributes.addClass('banner-search') }}>
+    <h2>Find A Court</h2>
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </div>
 </div>
