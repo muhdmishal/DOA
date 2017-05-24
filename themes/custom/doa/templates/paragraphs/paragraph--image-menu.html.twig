@@ -41,7 +41,8 @@
 {% block paragraph %}
   <div{{ attributes.addClass('col-sm-4') }}>
     {% block content %}
-      {{ content }}
+      <h2>{{ content.field_link }}</h2>
+      {{ content.field_image }}
     {% endblock %}
   </div>
 {% endblock paragraph %}
