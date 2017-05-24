@@ -26,6 +26,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  padding: 20px 0;
 }
 .banner-bg .row {
   margin-left: 0;
@@ -78,6 +79,7 @@
   width: 100%;
   background: rgba(0, 0, 0, 0.5);
   padding: 25px 10px;
+  margin-bottom: -20px;
 }
 .more-info h2 {
   font-family: 'Bebas Neue';
