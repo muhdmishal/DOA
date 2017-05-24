@@ -96,6 +96,9 @@ h2 {
 .image-menu {
   color: gray;
 }
+.image-menu a {
+  color: gray;
+}
 .image-menu img {
   width: 100%;
 }
