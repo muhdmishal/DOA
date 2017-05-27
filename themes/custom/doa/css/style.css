@@ -109,4 +109,7 @@ h2 {
 .footer {
   background: #141213;
   text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+  color: white;
 }
