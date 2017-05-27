@@ -123,3 +123,11 @@ h2 {
 .teaser h2 a:hover {
   opacity: 0.9;
 }
+.links.inline {
+  padding: 0;
+  list-style: none;
+}
+.links.inline li {
+  display: inline-block;
+  padding-right: 5px;
+}
