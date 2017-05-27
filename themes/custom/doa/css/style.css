@@ -113,3 +113,13 @@ h2 {
   padding: 20px;
   color: white;
 }
+.teaser h1,
+.teaser h2 {
+  text-align: left;
+}
+.teaser h2 a {
+  color: #141213;
+}
+.teaser h2 a:hover {
+  opacity: 0.9;
+}
