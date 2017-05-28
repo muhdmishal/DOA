@@ -43,13 +43,12 @@
 </header>
 {{ page.banner }}
 
-<main role="main" class="col-sm-6 col-sm-offset-3">
-  <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-    {{ page.content }}
+<main role="main" class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+      {{ page.content }}
 
-    <aside class="layout-sidebar-first" role="complementary">
-      {{ page.sidebar_first }}
-    </aside>
+  </div>
 </main>
 
 {% if page.footer %}
