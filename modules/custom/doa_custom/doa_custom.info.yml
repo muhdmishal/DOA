@@ -1,0 +1,6 @@
+name: DOA Custom
+type: module
+description: Implements the custom functionality for DOA.
+core: 8.x
+version: 8.x-1.0
+package: Custom
