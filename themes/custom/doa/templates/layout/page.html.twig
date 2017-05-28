@@ -37,26 +37,23 @@
  * @see html.html.twig
  */
 #}
-<div class="layout-container">
 
-  <header role="banner">
-    {{ page.header }}
-  </header>
-  {{ page.banner }}
+<header role="banner">
+  {{ page.header }}
+</header>
+{{ page.banner }}
 
-  <main role="main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-      {{ page.content }}
+<main role="main">
+  <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+    {{ page.content }}
 
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
-  </main>
+    <aside class="layout-sidebar-first" role="complementary">
+      {{ page.sidebar_first }}
+    </aside>
+</main>
 
-  {% if page.footer %}
-    <footer role="contentinfo" class="footer container-fluid">
-      {{ page.footer }}
-    </footer>
-  {% endif %}
-
-</div>{# /.layout-container #}
+{% if page.footer %}
+  <footer role="contentinfo" class="footer container-fluid">
+    {{ page.footer }}
+  </footer>
+{% endif %}
