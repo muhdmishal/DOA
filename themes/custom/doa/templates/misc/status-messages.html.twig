@@ -25,7 +25,7 @@
   <div role="contentinfo" aria-label="{{ status_headings[type] }}"{{ attributes|without('role', 'aria-label') }}>
     {% if type == 'error' %}
       <div role="alert" class="alert alert-danger">
-    {% elseif %}
+    {% else %}
       <div role="alert" class="alert alert-success">
     {% endif %}
       {% if status_headings[type] %}
