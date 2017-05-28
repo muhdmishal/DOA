@@ -133,3 +133,6 @@ h2 {
   display: inline-block;
   padding-right: 5px;
 }
+.nav.nav-tabs {
+  margin-bottom: 20px;
+}
