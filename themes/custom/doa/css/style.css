@@ -141,9 +141,11 @@ h2 {
 }
 .car-review-teaser h2 {
   text-align: left;
+  margin-top: 0;
 }
 .car-listing-teaser h2 {
   text-align: left;
+  margin-top: 0;
 }
 h2 a {
   color: #141213;
