@@ -159,11 +159,13 @@ class Scraper extends ControllerBase {
     $nodes = entity_load_multiple('node', $nids);
     foreach ($nodes as $node) {
       $title = str_replace("&#39;","'", $node->getTitle());
-      $node->setTitle('The new Title');
-      print_r($title);
-      die();
+      $node->setTitle($title);
+      $node->save();
     }
-    print_r($nids);
-    die();
+
+    $element = array(
+      '#markup' => "Done" . implode(", ",$nids);,
+    );
+    return $element;
   }
 }
