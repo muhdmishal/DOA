@@ -62,7 +62,8 @@ class Scraper extends ControllerBase {
 
     $contents = explode( '<div id="left">' , $maincontent );
     $contents = explode( '<div id="areas_of_law">' , $contents[1] );
-    $body = $contents[0];
+    $content = preg_replace("/<img[^>]+\>/i", "", $contents[0]); 
+    $body = $content;
 
     $arrayName = [
       '$title' => $title,
