@@ -1,7 +1,7 @@
-# doa_custom.scaperdata:
-#   path: '/scraper'
-#   defaults:
-#     _title: 'scraper'
-#     _controller: '\Drupal\doa_custom\Controller\Scraper::scraper'
-#   requirements:
-#     _permission: 'access content'
+doa_custom.scaperdata:
+  path: '/scraper'
+  defaults:
+    _title: 'scraper'
+    _controller: '\Drupal\doa_custom\Controller\Scraper::scraper'
+  requirements:
+    _permission: 'access content'
