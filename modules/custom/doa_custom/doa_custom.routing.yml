@@ -1,5 +1,5 @@
 doa_custom.scaperdata:
-  path: '/scraper'
+  path: '/scraper/{scraper_id}'
   defaults:
     _title: 'scraper'
     _controller: '\Drupal\doa_custom\Controller\Scraper::scraper'

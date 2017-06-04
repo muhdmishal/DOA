@@ -14,7 +14,37 @@ class Scraper extends ControllerBase {
   /**
    * Adds the media item to playlist/timeline depending on the parametrs.
    */
-  public function scraper() {
+  public function scraper($id) {
+
+    $mainurl = "https://courttribunalfinder.service.gov.uk/courts/".$id;
+    $mainch = curl_init();
+    curl_setopt ($mainch, CURLOPT_URL, $mainurl);
+    curl_setopt ($mainch, CURLOPT_CONNECTTIMEOUT, 5);
+    curl_setopt ($mainch, CURLOPT_RETURNTRANSFER, true);
+    $maincontents = curl_exec($mainch);
+    if (curl_errno($mainch)) {
+      echo curl_error($mainch);
+      echo "\n<br />";
+      $maincontents = '';
+    } else {
+      curl_close($mainch);
+    }
+
+    if (!is_string($maincontents) || !strlen($maincontents)) {
+      $maincontents = '';
+    }
+
+    $maincontents = explode( '<h2 class="clear letterheader">Names starting with' , $maincontents );
+    $maincontents = explode( '<nav role="navigation"' , $maincontents[1] );
+    $courtlist = $maincontents[0];
+
+    $courtlist = explode( '<li>">Names starting with' , $maincontents );
+
+    print_r($courtlist);
+    die();
+
+
+
 
     $url = "https://courttribunalfinder.service.gov.uk/courts/aberdeen-employment-tribunal";
     $ch = curl_init();
@@ -82,27 +112,27 @@ class Scraper extends ControllerBase {
 
     ];
 
-    $node = Node::create([
-      'type' => 'courts',
-      'title' => $title . "scraper",
-      'field_address_locality' => $addressLocality,
-      'field_address_region' => $addressRegion,
-      'field_map_link' => $mapAddress,
-      'field_postal_code' => $postalCode,
-      'field_street_address' => [
-        'value' => $streetAddress,
-        'format' => 'basic_html',
-      ],
-      'field_cases_heard' => [
-        'value' => $casesHeard,
-        'format' => 'full_html',
-      ],
-      'body' => [
-        'value' => $body,
-        'format' => 'full_html',
-      ]
-    ]);
-    $node->save();
+    // $node = Node::create([
+    //   'type' => 'courts',
+    //   'title' => $title,
+    //   'field_address_locality' => $addressLocality,
+    //   'field_address_region' => $addressRegion,
+    //   'field_map_link' => $mapAddress,
+    //   'field_postal_code' => $postalCode,
+    //   'field_street_address' => [
+    //     'value' => $streetAddress,
+    //     'format' => 'basic_html',
+    //   ],
+    //   'field_cases_heard' => [
+    //     'value' => $casesHeard,
+    //     'format' => 'full_html',
+    //   ],
+    //   'body' => [
+    //     'value' => $body,
+    //     'format' => 'full_html',
+    //   ]
+    // ]);
+    // $node->save();
 
     $element = array(
       '#markup' => "saved",
