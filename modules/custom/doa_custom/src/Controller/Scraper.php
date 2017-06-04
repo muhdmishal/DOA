@@ -32,7 +32,7 @@ class Scraper extends ControllerBase {
     if (!is_string($contents) || !strlen($contents)) {
       $contents = '';
     }
-
+    $maincontent = $contents;
     $contents = explode( '<h1>' , $contents );
     $contents = explode( '</h1>' , $contents[1] );
     $title = $contents[0];
@@ -41,26 +41,26 @@ class Scraper extends ControllerBase {
     $contents = explode( '</span>' , $contents[1] );
     $streetAddress = $contents[0];
 
-    $contents = explode( '<span property="addressLocality">' , $contents[1] );
+    $contents = explode( '<span property="addressLocality">' , $maincontent );
     $contents = explode( '</span>' , $contents[1] );
     $addressLocality = $contents[0];
 
-    $contents = explode( '<span property="addressRegion">' , $contents[1] );
+    $contents = explode( '<span property="addressRegion">' , $maincontent );
     $contents = explode( '</span>' , $contents[1] );
     $addressRegion = $contents[0];
 
-    $contents = explode( '<span property="postalCode">' , $contents[1] );
+    $contents = explode( '<span property="postalCode">' , $maincontent );
     $contents = explode( '</span>' , $contents[1] );
     $postalCode = $contents[0];
 
-    $contents = explode( '<p id="map-link">' , $contents[1] );
+    $contents = explode( '<p id="map-link">' , $maincontent );
     $contents = explode( '</p>' , $contents[1] );
     $map_full_content = $contents[0];
     $map_full_content = explode( '<a href="' , $map_full_content );
     $map_full_content = explode( '" target="_blank"' , $map_full_content[1] );
     $mapAddress = $map_full_content[0];
 
-    $contents = explode( '<div id="left">' , $contents[1] );
+    $contents = explode( '<div id="left">' , $maincontent );
     $contents = explode( '<div id="areas_of_law">' , $contents[1] );
     $body = $contents[0];
 
