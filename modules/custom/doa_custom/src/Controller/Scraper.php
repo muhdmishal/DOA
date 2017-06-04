@@ -33,6 +33,20 @@ class Scraper extends ControllerBase {
       $contents = '';
     }
 
+    $path=new \DOMXpath($contents);
+    $dom=$path->query("*/div[@id='visiting']");
+    if (!$dom==0) {
+       foreach ($dom as $dom) {
+          print "
+    The Type of the element is: ". $dom->nodeName. "
+    <b><pre><code>";
+          $getContent = $dom->childNodes;
+          foreach ($getContent as $attr) {
+             print $attr->nodeValue. "</code></pre></b>";
+          }
+       }
+    }
+    die();
     $element = array(
       '#markup' => $contents,
     );
