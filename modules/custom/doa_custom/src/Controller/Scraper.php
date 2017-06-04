@@ -36,11 +36,11 @@ class Scraper extends ControllerBase {
 
     $maincontents = explode( '<h2 class="clear letterheader">Names starting with' , $maincontents );
     $maincontents = explode( '<nav role="navigation" class="a-z-navigation">' , $maincontents[1] );
-    $courtlist = $maincontents[0];
+    $courtlists = $maincontents[0];
 
-    $courtlist = explode( '<li>' , $courtlist );
+    $courtlist = explode( '<li>' , $courtlists );
 
-    print_r($courtlist);
+    print_r($courtlists);
     die();
 
 
