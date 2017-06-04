@@ -51,101 +51,100 @@ class Scraper extends ControllerBase {
       $courtlink = explode( '">' , $courtlink[1] );
       $courturl[] = $courtlink[0];
     }
+    $num_saved = 0;
+    foreach ($courturl as $url) {
+      $ch = curl_init();
+      curl_setopt ($ch, CURLOPT_URL, $baseurl.$url);
+      curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 5);
+      curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+      $contents = curl_exec($ch);
+      if (curl_errno($ch)) {
+        echo curl_error($ch);
+        echo "\n<br />";
+        $contents = '';
+      } else {
+        curl_close($ch);
+      }
 
-    print_r($courturl);
-    die();
+      if (!is_string($contents) || !strlen($contents)) {
+        $contents = '';
+      }
+      $maincontent = $contents;
+      $contents = explode( '<h1>' , $contents );
+      $contents = explode( '</h1>' , $contents[1] );
+      $title = $contents[0];
 
+      $contents = explode( '<span property="streetAddress">' , $contents[1] );
+      $contents = explode( '</span>' , $contents[1] );
+      $streetAddress = $contents[0];
 
-    $url = "https://courttribunalfinder.service.gov.uk/courts/aberdeen-employment-tribunal";
-    $ch = curl_init();
-    curl_setopt ($ch, CURLOPT_URL, $url);
-    curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 5);
-    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-    $contents = curl_exec($ch);
-    if (curl_errno($ch)) {
-      echo curl_error($ch);
-      echo "\n<br />";
-      $contents = '';
-    } else {
-      curl_close($ch);
+      $contents = explode( '<span property="addressLocality">' , $maincontent );
+      $contents = explode( '</span>' , $contents[1] );
+      $addressLocality = $contents[0];
+
+      $contents = explode( '<span property="addressRegion">' , $maincontent );
+      $contents = explode( '</span>' , $contents[1] );
+      $addressRegion = $contents[0];
+
+      $contents = explode( '<span property="postalCode">' , $maincontent );
+      $contents = explode( '</span>' , $contents[1] );
+      $postalCode = $contents[0];
+
+      $contents = explode( '<p id="map-link">' , $maincontent );
+      $contents = explode( '</p>' , $contents[1] );
+      $map_full_content = $contents[0];
+      $map_full_content = explode( '<a href="' , $map_full_content );
+      $map_full_content = explode( '" target="_blank"' , $map_full_content[1] );
+      $mapAddress = $map_full_content[0];
+
+      $contents = explode( '<div id="left">' , $maincontent );
+      $contents = explode( '<div id="areas_of_law">' , $contents[1] );
+      $content = preg_replace("/<img[^>]+\>/i", "", $contents[0]);
+      $body = $content;
+
+      $contents = explode( '<div id="areas_of_law">' , $maincontent );
+      $contents = explode( '</div>' , $contents[1] );
+      $casesHeard = $contents[0];
+
+      $arrayName = [
+        '$title' => $title,
+        '$streetAddress' => $streetAddress,
+        '$addressLocality' => $addressLocality,
+        '$addressRegion' => $addressRegion,
+        '$postalCode' => $postalCode,
+        '$mapAddress' => $mapAddress,
+        '$body' => $body,
+        '$casesHeard' => $casesHeard
+
+      ];
+
+      $node = Node::create([
+        'type' => 'courts',
+        'title' => $title,
+        'field_address_locality' => $addressLocality,
+        'field_address_region' => $addressRegion,
+        'field_map_link' => $mapAddress,
+        'field_postal_code' => $postalCode,
+        'field_street_address' => [
+          'value' => $streetAddress,
+          'format' => 'basic_html',
+        ],
+        'field_cases_heard' => [
+          'value' => $casesHeard,
+          'format' => 'full_html',
+        ],
+        'body' => [
+          'value' => $body,
+          'format' => 'full_html',
+        ]
+      ]);
+      $node->save();
+
+      $num_saved++;
     }
-
-    if (!is_string($contents) || !strlen($contents)) {
-      $contents = '';
-    }
-    $maincontent = $contents;
-    $contents = explode( '<h1>' , $contents );
-    $contents = explode( '</h1>' , $contents[1] );
-    $title = $contents[0];
-
-    $contents = explode( '<span property="streetAddress">' , $contents[1] );
-    $contents = explode( '</span>' , $contents[1] );
-    $streetAddress = $contents[0];
-
-    $contents = explode( '<span property="addressLocality">' , $maincontent );
-    $contents = explode( '</span>' , $contents[1] );
-    $addressLocality = $contents[0];
-
-    $contents = explode( '<span property="addressRegion">' , $maincontent );
-    $contents = explode( '</span>' , $contents[1] );
-    $addressRegion = $contents[0];
-
-    $contents = explode( '<span property="postalCode">' , $maincontent );
-    $contents = explode( '</span>' , $contents[1] );
-    $postalCode = $contents[0];
-
-    $contents = explode( '<p id="map-link">' , $maincontent );
-    $contents = explode( '</p>' , $contents[1] );
-    $map_full_content = $contents[0];
-    $map_full_content = explode( '<a href="' , $map_full_content );
-    $map_full_content = explode( '" target="_blank"' , $map_full_content[1] );
-    $mapAddress = $map_full_content[0];
-
-    $contents = explode( '<div id="left">' , $maincontent );
-    $contents = explode( '<div id="areas_of_law">' , $contents[1] );
-    $content = preg_replace("/<img[^>]+\>/i", "", $contents[0]);
-    $body = $content;
-
-    $contents = explode( '<div id="areas_of_law">' , $maincontent );
-    $contents = explode( '</div>' , $contents[1] );
-    $casesHeard = $contents[0];
-
-    $arrayName = [
-      '$title' => $title,
-      '$streetAddress' => $streetAddress,
-      '$addressLocality' => $addressLocality,
-      '$addressRegion' => $addressRegion,
-      '$postalCode' => $postalCode,
-      '$mapAddress' => $mapAddress,
-      '$body' => $body,
-      '$casesHeard' => $casesHeard
-
-    ];
-
-    // $node = Node::create([
-    //   'type' => 'courts',
-    //   'title' => $title,
-    //   'field_address_locality' => $addressLocality,
-    //   'field_address_region' => $addressRegion,
-    //   'field_map_link' => $mapAddress,
-    //   'field_postal_code' => $postalCode,
-    //   'field_street_address' => [
-    //     'value' => $streetAddress,
-    //     'format' => 'basic_html',
-    //   ],
-    //   'field_cases_heard' => [
-    //     'value' => $casesHeard,
-    //     'format' => 'full_html',
-    //   ],
-    //   'body' => [
-    //     'value' => $body,
-    //     'format' => 'full_html',
-    //   ]
-    // ]);
-    // $node->save();
 
     $element = array(
-      '#markup' => "saved",
+      '#markup' => "saved : " . $num_saved,
     );
     return $element;
   }
