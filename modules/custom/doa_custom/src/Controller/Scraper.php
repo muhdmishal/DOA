@@ -33,13 +33,13 @@ class Scraper extends ControllerBase {
       $contents = '';
     }
 
-    $contents = explode( '<header class="page-header">' , $contents );
-    $contents = explode("</header>" , $contents[1] );
+    $contents = explode( '<h1>' , $contents );
+    $contents = explode( '</h1>' , $contents[1] );
 
     $title = $contents[0];
 
     $contents = explode( '<span property="streetAddress">' , $contents[1] );
-    $contents = explode("</span>" , $contents[1] );
+    $contents = explode( '</span>' , $contents[1] );
     $streetAddress = $contents[0];
     print_r($title . $streetAddress);
     die();
