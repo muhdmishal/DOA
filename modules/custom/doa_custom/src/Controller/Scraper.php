@@ -14,9 +14,9 @@ class Scraper extends ControllerBase {
   /**
    * Adds the media item to playlist/timeline depending on the parametrs.
    */
-  public function scraper($id) {
+  public function scraper($scraper_id) {
 
-    $mainurl = "https://courttribunalfinder.service.gov.uk/courts/".$id;
+    $mainurl = "https://courttribunalfinder.service.gov.uk/courts/".$scraper_id;
     $mainch = curl_init();
     curl_setopt ($mainch, CURLOPT_URL, $mainurl);
     curl_setopt ($mainch, CURLOPT_CONNECTTIMEOUT, 5);
