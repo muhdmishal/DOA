@@ -3,6 +3,7 @@
 namespace Drupal\doa_custom\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Component\Utility;
 
 /**
  * MediaAdd Class. Contains the methods for playlist/timeline/quote creation.
@@ -35,7 +36,7 @@ class Scraper extends ControllerBase {
 
     //echo $contents;
 
-    $doc = new DOMDocument();
+    $doc = new \DOMDocument();
 
     // We don't want to bother with white spaces
     $doc->preserveWhiteSpace = false;
