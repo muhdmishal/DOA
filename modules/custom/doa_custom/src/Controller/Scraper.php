@@ -33,21 +33,10 @@ class Scraper extends ControllerBase {
       $contents = '';
     }
 
-    $source=new \DOMdocument();
-    $source->loadHTMLFile($contents);
-    $path=new \DOMXpath($source);
-    $dom=$path->query("*/div[@id='visiting']");
-    if (!$dom==0) {
-       foreach ($dom as $dom) {
-          print "
-    The Type of the element is: ". $dom->nodeName. "
-    <b><pre><code>";
-          $getContent = $dom->childNodes;
-          foreach ($getContent as $attr) {
-             print $attr->nodeValue. "</code></pre></b>";
-          }
-       }
-    }
+    $first_step = explode( '<span property="streetAddress">' , $contents );
+    $second_step = explode("</span>" , $first_step[1] );
+
+    print_r($second_step[0]);
     die();
     $element = array(
       '#markup' => $contents,
