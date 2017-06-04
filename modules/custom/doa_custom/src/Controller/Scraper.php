@@ -74,7 +74,8 @@ class Scraper extends ControllerBase {
       '$body' => $body,
 
     ];
-    print_r($title . $streetAddress);
+    echo "<pre>";
+    print_r($arrayName);
     die();
     $element = array(
       '#markup' => $contents,
