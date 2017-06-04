@@ -30,35 +30,11 @@ class Scraper extends ControllerBase {
     }
 
     if (!is_string($contents) || !strlen($contents)) {
-    echo "Failed to get contents.";
-    $contents = '';
+      $contents = '';
     }
-
-    //echo $contents;
-
-    $doc = new \DOMDocument();
-
-    // We don't want to bother with white spaces
-    $doc->preserveWhiteSpace = false;
-
-    // Most HTML Developers are chimps and produce invalid markup...
-    $doc->strictErrorChecking = false;
-    $doc->recover = true;
-
-    $doc->loadHTMLFile($contents);
-
-    $xpath = new \DOMXPath($doc);
-
-    $result = '';
-    foreach($xpath->evaluate('//div[@id="visiting"]/node()') as $childNode) {
-      $result .= $dom->saveHtml($childNode);
-    }
-    print_r($result);
-    die();
-    //var_dump($entries->item(0)->textContent);
 
     $element = array(
-      '#markup' => $divContent,
+      '#markup' => $contents,
     );
     return $element;
   }
