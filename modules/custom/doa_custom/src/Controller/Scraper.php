@@ -35,8 +35,26 @@ class Scraper extends ControllerBase {
 
     //echo $contents;
 
+    $doc = new DOMDocument;
+
+    // We don't want to bother with white spaces
+    $doc->preserveWhiteSpace = false;
+
+    // Most HTML Developers are chimps and produce invalid markup...
+    $doc->strictErrorChecking = false;
+    $doc->recover = true;
+
+    $doc->loadHTMLFile($contents);
+
+    $xpath = new DOMXPath($doc);
+
+    $query = "//div[@id='visiting']";
+
+    $entries = $xpath->query($query);
+    //var_dump($entries->item(0)->textContent);
+
     $element = array(
-      '#markup' => $contents,
+      '#markup' => $entries->item(0)->textContent,
     );
     return $element;
   }
