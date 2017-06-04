@@ -16,9 +16,10 @@ class Scraper extends ControllerBase {
    */
   public function scraper($scraper_id) {
 
-    $mainurl = "https://courttribunalfinder.service.gov.uk/courts/".$scraper_id;
+    $baseurl = "https://courttribunalfinder.service.gov.uk/courts/";
+
     $mainch = curl_init();
-    curl_setopt ($mainch, CURLOPT_URL, $mainurl);
+    curl_setopt ($mainch, CURLOPT_URL, $baseurl.$scraper_id);
     curl_setopt ($mainch, CURLOPT_CONNECTTIMEOUT, 5);
     curl_setopt ($mainch, CURLOPT_RETURNTRANSFER, true);
     $maincontents = curl_exec($mainch);
@@ -41,17 +42,17 @@ class Scraper extends ControllerBase {
 
     print_r($courtlist);
     die();
+    $i = 0;
     foreach ($courtlist as $court) {
+      if ($i == 0) {
+        $i = 1;
+        continue;
+      }
       $courtlink = explode( '<a href="/courts/' , $court );
-
+      $courtlink = explode( '">' , $courtlink[1] );
+      print_r($courtlink[0]);
+      die();
     }
-
-    print_r('no');
-    die();
-
-
-
-
 
 
     $url = "https://courttribunalfinder.service.gov.uk/courts/aberdeen-employment-tribunal";
