@@ -39,8 +39,16 @@ class Scraper extends ControllerBase {
 
     $courtlist = explode( '<li>' , $courtlists[0] );
 
-    print_r($courtlist);
+    foreach ($courtlist as $court) {
+      $courtlink = explode( '<a href="/courts/' , $court );
+      print_r($courtlink);
+      die();
+    }
+
+    print_r('no');
     die();
+
+
 
 
 
