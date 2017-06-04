@@ -35,7 +35,7 @@ class Scraper extends ControllerBase {
 
     //echo $contents;
 
-    $doc = new DOMDocument;
+    $doc = new DOMDocument();
 
     // We don't want to bother with white spaces
     $doc->preserveWhiteSpace = false;
