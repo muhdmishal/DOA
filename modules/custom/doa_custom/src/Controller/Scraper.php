@@ -36,11 +36,11 @@ class Scraper extends ControllerBase {
 
     $subcontents = explode( '<h2 class="clear letterheader">Names starting with' , $maincontents );
     $courtlists = explode( '<nav' , $subcontents[1] );
-    print_r($courtlists);
-    die();
 
     $courtlist = explode( '<li>' , $courtlists[0] );
 
+    print_r($courtlist);
+    die();
     foreach ($courtlist as $court) {
       $courtlink = explode( '<a href="/courts/' , $court );
 
