@@ -49,8 +49,11 @@ class Scraper extends ControllerBase {
 
     $xpath = new \DOMXPath($doc);
 
-    $divContent = $xpath->query('//div[id="visiting"]');
-    print_r($divContent);
+    $result = '';
+    foreach($xpath->evaluate('//div[@id="visiting"]/node()') as $childNode) {
+      $result .= $dom->saveHtml($childNode);
+    }
+    print_r($result);
     die();
     //var_dump($entries->item(0)->textContent);
 
