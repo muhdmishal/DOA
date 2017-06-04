@@ -47,7 +47,7 @@ class Scraper extends ControllerBase {
 
     $doc->loadHTMLFile($contents);
 
-    $xpath = new DOMXPath($doc);
+    $xpath = new \DOMXPath($doc);
 
     $query = "//div[@id='visiting']";
 
