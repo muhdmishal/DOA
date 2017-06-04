@@ -41,6 +41,7 @@ class Scraper extends ControllerBase {
     $courtlist = explode( '<li>' , $courtlists[0] );
 
     $i = 0;
+    $courturl = [];
     foreach ($courtlist as $court) {
       if ($i == 0) {
         $i = 1;
@@ -48,9 +49,11 @@ class Scraper extends ControllerBase {
       }
       $courtlink = explode( '<a href="/courts/' , $court );
       $courtlink = explode( '">' , $courtlink[1] );
-      print_r($courtlink[0]);
-      die();
+      $courturl[] = $courtlink[0];
     }
+
+    print_r($courturl);
+    die();
 
 
     $url = "https://courttribunalfinder.service.gov.uk/courts/aberdeen-employment-tribunal";
