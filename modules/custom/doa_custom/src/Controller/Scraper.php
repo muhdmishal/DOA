@@ -33,7 +33,9 @@ class Scraper extends ControllerBase {
       $contents = '';
     }
 
-    $path=new \DOMXpath($contents);
+    $source=new \DOMdocument();
+    $source->loadHTMLFile($contents);
+    $path=new \DOMXpath($source);
     $dom=$path->query("*/div[@id='visiting']");
     if (!$dom==0) {
        foreach ($dom as $dom) {
