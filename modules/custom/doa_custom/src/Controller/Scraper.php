@@ -45,7 +45,7 @@ class Scraper extends ControllerBase {
     $doc->strictErrorChecking = false;
     $doc->recover = true;
 
-    $doc->loadHTMLFile($contents);
+    $doc->loadHTMLFile($url);
 
     $xpath = new \DOMXPath($doc);
 
