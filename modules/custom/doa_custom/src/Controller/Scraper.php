@@ -148,4 +148,14 @@ class Scraper extends ControllerBase {
     );
     return $element;
   }
+
+  public function correctionCourt() {
+    $query = \Drupal::entityQuery('node')
+    ->condition('status', 1)
+    ->condition('title', '&#39;', 'CONTAINS');
+
+    $nids = $query->execute();
+    print_r($nids);
+    die();
+  }
 }

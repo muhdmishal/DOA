@@ -5,3 +5,10 @@ doa_custom.scaperdata:
     _controller: '\Drupal\doa_custom\Controller\Scraper::scraper'
   requirements:
     _permission: 'access content'
+doa_custom.correctioncourt:
+  path: '/correctioncourt'
+  defaults:
+    _title: 'Correction Court'
+    _controller: '\Drupal\doa_custom\Controller\Scraper::correctionCourt'
+  requirements:
+    _permission: 'access content'
