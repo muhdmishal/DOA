@@ -152,3 +152,8 @@ h2 a:hover {
   opacity: 0.9;
   text-decoration: none;
 }
+.car-review-teaser,
+.car-listing-teaser {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
