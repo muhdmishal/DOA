@@ -40,8 +40,6 @@ class Scraper extends ControllerBase {
 
     $courtlist = explode( '<li>' , $courtlists[0] );
 
-    print_r($courtlist);
-    die();
     $i = 0;
     foreach ($courtlist as $court) {
       if ($i == 0) {
