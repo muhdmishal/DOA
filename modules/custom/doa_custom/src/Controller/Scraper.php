@@ -4,6 +4,7 @@ namespace Drupal\doa_custom\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Component\Utility;
+use \Drupal\node\Entity\Node;
 
 /**
  * MediaAdd Class. Contains the methods for playlist/timeline/quote creation.
@@ -80,11 +81,31 @@ class Scraper extends ControllerBase {
       '$casesHeard' => $casesHeard
 
     ];
-    echo "<pre>";
-    print_r($arrayName);
-    die();
+
+    $node = Node::create([
+      'type' => 'courts',
+      'title' => $title . "scraper",
+      'field_address_locality' => $addressLocality,
+      'field_address_region' => $addressRegion,
+      'field_map_link' => $mapAddress,
+      'field_postal_code' => $postalCode,
+      'field_street_address' => [
+        'value' => $streetAddress,
+        'format' => 'basic_html',
+      ],
+      'field_cases_heard' => [
+        'value' => $casesHeard,
+        'format' => 'full_html',
+      ],
+      'body' => [
+        'value' => $body,
+        'format' => 'full_html',
+      ]
+    ]);
+    $node->save();
+
     $element = array(
-      '#markup' => $contents,
+      '#markup' => "saved",
     );
     return $element;
   }
