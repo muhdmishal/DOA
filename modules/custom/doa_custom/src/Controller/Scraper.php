@@ -35,7 +35,7 @@ class Scraper extends ControllerBase {
     }
 
     $maincontents = explode( '<h2 class="clear letterheader">Names starting with' , $maincontents );
-    $maincontents = explode( '<nav role="navigation"' , $maincontents[1] );
+    $maincontents = explode( '<nav role="navigation" class="a-z-navigation">' , $maincontents[1] );
     $courtlist = $maincontents[0];
 
     $courtlist = explode( '<li>' , $courtlist );
