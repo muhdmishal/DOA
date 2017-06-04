@@ -50,6 +50,8 @@ class Scraper extends ControllerBase {
     $xpath = new \DOMXPath($doc);
 
     $divContent = $xpath->query('//div[id="visiting"]');
+    print_r($divContent);
+    die();
     //var_dump($entries->item(0)->textContent);
 
     $element = array(
