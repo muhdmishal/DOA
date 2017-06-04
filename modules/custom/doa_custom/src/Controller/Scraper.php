@@ -45,17 +45,15 @@ class Scraper extends ControllerBase {
     $doc->strictErrorChecking = false;
     $doc->recover = true;
 
-    $doc->loadHTMLFile($url);
+    $doc->loadHTMLFile($contents);
 
     $xpath = new \DOMXPath($doc);
 
-    $query = "//div[@id='visiting']";
-
-    $entries = $xpath->query($query);
+    $divContent = $xpath->query('//div[id="visiting"]');
     //var_dump($entries->item(0)->textContent);
 
     $element = array(
-      '#markup' => $entries->item(0)->textContent,
+      '#markup' => $divContent,
     );
     return $element;
   }
