@@ -62,8 +62,12 @@ class Scraper extends ControllerBase {
 
     $contents = explode( '<div id="left">' , $maincontent );
     $contents = explode( '<div id="areas_of_law">' , $contents[1] );
-    $content = preg_replace("/<img[^>]+\>/i", "", $contents[0]); 
+    $content = preg_replace("/<img[^>]+\>/i", "", $contents[0]);
     $body = $content;
+
+    $contents = explode( '<div id="areas_of_law">' , $maincontent );
+    $contents = explode( '</div>' , $contents[1] );
+    $casesHeard = $contents[0];
 
     $arrayName = [
       '$title' => $title,
@@ -73,6 +77,7 @@ class Scraper extends ControllerBase {
       '$postalCode' => $postalCode,
       '$mapAddress' => $mapAddress,
       '$body' => $body,
+      '$casesHeard' => $casesHeard
 
     ];
     echo "<pre>";
