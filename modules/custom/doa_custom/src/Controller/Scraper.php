@@ -155,6 +155,13 @@ class Scraper extends ControllerBase {
     ->condition('title', '&#39;', 'CONTAINS');
 
     $nids = $query->execute();
+
+    $nodes = entity_load_multiple('node', $nids);
+    foreach ($nodes as $node) {
+      $nodes->title->value = str_replace("&#39;","'",$nodes->title->value);
+      print_r($nodes->title->value);
+      die();
+    }
     print_r($nids);
     die();
   }
