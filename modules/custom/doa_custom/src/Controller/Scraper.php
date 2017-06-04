@@ -164,7 +164,7 @@ class Scraper extends ControllerBase {
     }
 
     $element = array(
-      '#markup' => "Done" . implode(", ",$nids);
+      '#markup' => "Done" . implode(", ",$nids),
     );
     return $element;
   }
