@@ -22,6 +22,7 @@ function initMap() {
 
       var address_zip = place.address_components;
       var searchPostalCode = "";
+      console.log("Address zip" + address_zip);
       $.each(address_zip, function(){
           if(this.types[0]=="postal_code"){
               searchPostalCode=this.short_name;
