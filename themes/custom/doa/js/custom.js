@@ -28,12 +28,16 @@ function initMap() {
       var address_zip = place.address_components;
       var searchPostalCode = "";
       console.log("Address zip" + address_zip);
-      for each (var item in address_zip) {
-        if(item.types[0]=="postal_code"){
-            searchPostalCode=this.short_name;
-        }
-      }
-    
+      // for each (var item in address_zip) {
+      //   if(item.types[0]=="postal_code"){
+      //       searchPostalCode=this.short_name;
+      //   }
+      // }
+      jQuery.each(address_zip, function(){
+          if(this.types[0]=="postal_code"){
+              searchPostalCode=this.short_name;
+          }
+      });
 
       if (searchPostalCode == "") {
         console.log("No post code for the selected address. Please try another");
