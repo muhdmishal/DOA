@@ -9,7 +9,7 @@ function initMap() {
     if (!place.geometry) {
       // User entered the name of a Place that was not suggested and
       // pressed the Enter key, or the Place Details request failed.
-      window.alert("No details available for input: '" + place.name + "'");
+      console.log("No details available for input: '" + place.name + "'");
       return;
     }
     var address = '';
@@ -29,7 +29,7 @@ function initMap() {
       });
 
       if (searchPostalCode == "") {
-        alert("No post code for the selected address. Please try another");
+        console.log("No post code for the selected address. Please try another");
       }
       else {
         input.value = searchPostalCode;
