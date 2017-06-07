@@ -24,15 +24,8 @@ function initMap() {
         (place.address_components[1] && place.address_components[1].short_name || ''),
         (place.address_components[2] && place.address_components[2].short_name || '')
       ].join(' ');
-      console.log("place" + place);
       var address_zip = place.address_components;
       var searchPostalCode = "";
-      console.log("Address zip" + address_zip);
-      // for each (var item in address_zip) {
-      //   if(item.types[0]=="postal_code"){
-      //       searchPostalCode=this.short_name;
-      //   }
-      // }
       jQuery.each(address_zip, function(){
           if(this.types[0]=="postal_code"){
               searchPostalCode=this.short_name;
@@ -40,7 +33,8 @@ function initMap() {
       });
 
       if (searchPostalCode == "") {
-        console.log("No post code for the selected address. Please try another");
+        alert("No post code for the selected address. Please try another");
+        input.value = "";
       }
       else {
         input.value = searchPostalCode;
