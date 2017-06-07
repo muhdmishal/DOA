@@ -5,6 +5,12 @@ global-styling:
       css/style.css: {}
   js:
     js/bootstrap.min.js: {}
+    js/custom.js: {}
+    https://maps.googleapis.com/maps/api/js?key=AIzaSyDgVTxbNiWLoE9N8qQuogD-VIBvcRVWm2s&libraries=places&callback=initMap:
+      type: external
+      attributes:
+        defer: true
+        async: true
   dependencies:
     - core/drupal
     - core/jquery
