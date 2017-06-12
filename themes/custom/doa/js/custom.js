@@ -1,6 +1,6 @@
 function initMap() {
 
-  var input = document.getElementById('edit-postcode');
+  var input = document.getElementById('edit-town');
 
   var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -37,7 +37,7 @@ function initMap() {
     }
   });
 
-  var input2 = document.getElementById('edit-pc');
+  var input2 = document.getElementById('edit-locality');
 
   var autocomplete2 = new google.maps.places.Autocomplete(input2);
 
