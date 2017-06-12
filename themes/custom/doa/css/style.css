@@ -170,3 +170,8 @@ img {
     transform: translatex(-50%);
   }
 }
+.comment {
+  padding: 10px;
+  border: solid 1px #d0d0d0;
+  background-color: #efefef;
+}
