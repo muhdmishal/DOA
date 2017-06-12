@@ -22,7 +22,7 @@ function initMap() {
       var address_zip = place.address_components;
       var searchPostalCode = "";
       jQuery.each(address_zip, function(){
-          if(this.types[0]=="postal_code"){
+          if(this.types[0]=="locality"){
               searchPostalCode=this.short_name;
           }
       });
@@ -59,7 +59,7 @@ function initMap() {
       var address_zip2 = place2.address_components;
       var searchPostalCode2 = "";
       jQuery.each(address_zip2, function(){
-          if(this.types[0]=="postal_code"){
+          if(this.types[0]=="locality"){
               searchPostalCode2=this.short_name;
           }
       });
