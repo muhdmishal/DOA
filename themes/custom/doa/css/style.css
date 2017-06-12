@@ -177,3 +177,7 @@ img {
   border: solid 1px #d0d0d0;
   background-color: #efefef;
 }
+#views-exposed-form-buy-car-page-1 .form-group {
+  width: 50%;
+  float: left;
+}
