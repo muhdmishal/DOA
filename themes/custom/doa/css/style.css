@@ -1,15 +1,14 @@
-@font-face {
-  font-family: 'Bebas Neue';
-  src: url("fonts/BebasNeue.otf") format("opentype");
-}
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 .navbar-inverse {
-  font-family: 'Bebas Neue';
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
   font-size: 24px;
   background-color: #141213;
   border-color: #141213;
 }
 .logo {
-  font-family: 'Bebas Neue';
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
   font-size: 40px;
   text-align: center;
   padding-bottom: 10px;
@@ -39,7 +38,8 @@
   display: none;
 }
 .banner-search h2 {
-  font-family: 'Bebas Neue';
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
   font-size: 40px;
   text-align: center;
   color: white;
@@ -84,7 +84,8 @@
   margin-bottom: -20px;
 }
 .more-info h2 {
-  font-family: 'Bebas Neue';
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
   font-size: 40px;
   text-align: center;
   color: white;
@@ -92,7 +93,8 @@
 
 h1,
 h2 {
-  font-family: 'Bebas Neue';
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
   font-size: 40px;
   text-align: center;
 }
