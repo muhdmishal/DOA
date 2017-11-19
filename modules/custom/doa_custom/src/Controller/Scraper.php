@@ -207,11 +207,11 @@ class Scraper extends ControllerBase {
       $items = explode( '</strong>' , $items[1] );
       $soli['title'] = $items[0];
 
-      // $items = explode( '<strong><span class="resultItemDetailSpan">Address:</span></strong>' , $items[1] );
-      // $items = explode( '</div>' , $items[1] );
-      // $soli['address'] = $items[0];
+      $items = explode( '<strong><span class="resultItemDetailSpan">Address:</span></strong>' , $itemdetails[1] );
+      $items = explode( '</div>' , $items[1] );
+      $soli['address'] = $items[0];
 
-      print_r($items);
+      print_r($soli);
       die;
 
     }
