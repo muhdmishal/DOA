@@ -205,6 +205,13 @@ class Scraper extends ControllerBase {
       $soli['link'] = $items[0];
       $items = explode( '</strong>' , $items[1] );
       $soli['title'] = $items[0];
+
+      <strong><span class="resultItemDetailSpan">Address:</span></strong>
+
+      $items = explode( '<strong><span class="resultItemDetailSpan">Address:</span></strong>' , $items[1] );
+      $items = explode( '</div>' , $items[1] );
+      $soli['address'] = $items[0];
+
       print_r($soli);
       die;
 
