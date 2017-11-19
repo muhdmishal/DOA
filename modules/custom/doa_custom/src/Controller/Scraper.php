@@ -192,6 +192,21 @@ class Scraper extends ControllerBase {
     }
 
     $subcontents = explode( '<div class="resultItemOuter">' , $maincontents );
+
+    $i = 0;
+    foreach ($subcontents as $subcontent) {
+      if ($i == 0) {
+        $i = 1;
+        continue;
+      }
+
+      $itemdetails = explode( '<a class="resultItemCompanyTitle" href="' , $subcontent );
+      $items = explode( '"><strong>' , $itemdetails[1] );
+      $link = $items[0]
+      print_r($link);
+      die;
+
+    }
     print_r($subcontents);
     die;
     $courtlists = explode( '<nav' , $subcontents[1] );
