@@ -240,7 +240,7 @@ class Scraper extends ControllerBase {
 
       $j = 0;
       $links = array();
-      foreach ($items[1] as $areas) {
+      foreach ($items as $areas) {
         if ($i == 0) {
           $i = 1;
           continue;
