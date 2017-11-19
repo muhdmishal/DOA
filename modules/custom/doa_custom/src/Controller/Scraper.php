@@ -247,10 +247,10 @@ class Scraper extends ControllerBase {
         }
         $items = explode( '">' , $areas );
         $items = explode( '</a>' , $items[1] );
-        $link[] = $items[0];
+        $links[] = $items[0];
       }
 
-      print_r($links);
+      print_r($link);
       die;
 
       $items = explode( '</div>' , $items[1] );
