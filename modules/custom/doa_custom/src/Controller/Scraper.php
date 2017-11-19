@@ -290,18 +290,10 @@ class Scraper extends ControllerBase {
         'field_address_region' => $soli['region'],
         'field_call' => $soli['phone'],
         'field_email' => $soli['email'],
-        'field_website' => [
-          'uri'  => $soli['website'],
-        ],
-        'field_facebook' => [
-          'uri'  => $soli['facebook'],
-        ],
-        'field_twitter' => [
-          'uri'  => $soli['twitter'],
-        ],
-        'field_linkedin' => [
-          'uri'  => $soli['linkedin'],
-        ],
+        'field_website' => $soli['website'],
+        'field_facebook' => $soli['facebook'],
+        'field_twitter' => $soli['twitter'],
+        'field_linkedin' => $soli['linkedin'],
         'field_street_address' => [
           'value' => $soli['street'],
           'format' => 'basic_html',
