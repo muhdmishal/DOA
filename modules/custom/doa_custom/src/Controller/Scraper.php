@@ -212,6 +212,12 @@ class Scraper extends ControllerBase {
       $items = explode( '</div>' , $items[1] );
       $soli['address'] = $items[0];
 
+      $address = explode(',', $soli['address']);
+      $soli['street'] = $address[0];
+      $soli['locality'] = $address[1];
+      $soli['region'] = $address[2];
+
+
       $items = explode( '<strong><span class="resultItemDetailSpan">Phone:</span></strong>' , $itemdetails[1] );
       $items = explode( '</div>' , $items[1] );
       $soli['phone'] = $items[0];
@@ -277,36 +283,45 @@ class Scraper extends ControllerBase {
       $detailitems = explode( '<div class="compDetailH2Upper">' , $detailitems[1] );
       $soli['opening'] = $detailitems[0];
 
-      print_r($soli);
+      $node = Node::create([
+        'type' => 'solicitors',
+        'title' => $soli['title'],
+        'field_address_locality' => $soli['locality'],
+        'field_address_region' => $soli['region'],
+        'field_call' => $soli['phone'],
+        'field_website' => [
+          'uri'  => $soli['website'],
+        ],
+        'field_facebook' => [
+          'uri'  => $soli['facebook'],
+        ],
+        'field_twitter' => [
+          'uri'  => $soli['twitter'],
+        ],
+        'field_linkedin' => [
+          'uri'  => $soli['linkedin'],
+        ],
+        'field_street_address' => [
+          'value' => $soli['street'],
+          'format' => 'basic_html',
+        ],
+        'field_opening' => [
+          'value' => $soli['opening'],
+          'format' => 'full_html',
+        ],
+        'body' => [
+          'value' => $body,
+          'format' => 'full_html',
+        ]
+      ]);
+      $node->save();
+
+      print_r('working');
       die;
 
     }
 
 
-      //
-      // $node = Node::create([
-      //   'type' => 'courts',
-      //   'title' => $title,
-      //   'field_address_locality' => $addressLocality,
-      //   'field_address_region' => $addressRegion,
-      //   'field_map_link' => $mapAddress,
-      //   'field_postal_code' => $postalCode,
-      //   'field_street_address' => [
-      //     'value' => $streetAddress,
-      //     'format' => 'basic_html',
-      //   ],
-      //   'field_cases_heard' => [
-      //     'value' => $casesHeard,
-      //     'format' => 'full_html',
-      //   ],
-      //   'body' => [
-      //     'value' => $body,
-      //     'format' => 'full_html',
-      //   ]
-      // ]);
-      // $node->save();
-
-    $num_saved++;
 
     $element = array(
       '#markup' => "saved : " . $num_saved,
