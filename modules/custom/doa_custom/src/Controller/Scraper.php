@@ -236,8 +236,21 @@ class Scraper extends ControllerBase {
       $soli['linkedin'] = $items[0];
 
       $items = explode( '<span class="resultKeywords"' , $itemdetails[1] );
+      $items = explode( '<a href="' , $items[1] );
 
-      print_r($items[1]);
+      $j = 0;
+      $links = array();
+      foreach ($items[1] as $areas) {
+        if ($i == 0) {
+          $i = 1;
+          continue;
+        }
+        $items = explode( '">' , $areas );
+        $items = explode( '</a>' , $items[1] );
+        $link[] = $items[0];
+      }
+
+      print_r($links);
       die;
 
       $items = explode( '</div>' , $items[1] );
