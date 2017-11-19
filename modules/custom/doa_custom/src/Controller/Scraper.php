@@ -284,13 +284,14 @@ class Scraper extends ControllerBase {
       $detailitems = explode( '<div class="compDetailH2Upper">' , $detailitems[1] );
       $soli['opening'] = $detailitems[0];
 
+      $specialties = array();
+
       foreach ($soli['expertice'] as $expertice) {
         if ($terms = taxonomy_term_load_multiple_by_name($expertice, 'specialties')) {
           // Only use the first term returned; there should only be one anyways if we do this right.
           $term = reset($terms);
 
-          print_r($term->id());
-          die;
+          $specialties[] = $term->id();
         }
         else {
           $term = Term::create([
@@ -298,6 +299,7 @@ class Scraper extends ControllerBase {
             'vid' => 'specialties',
           ]);
           $term->save();
+          $specialties[] = $term->id();
         }
       }
 
@@ -314,7 +316,7 @@ class Scraper extends ControllerBase {
         'field_linkedin' => trim($soli['linkedin']),
         'field_street_address' => [
           'value' => $soli['street'],
-          'format' => 'basic_html',
+          'format' => 'full_html',
         ],
         'field_opening' => [
           'value' => $soli['opening'],
@@ -324,6 +326,7 @@ class Scraper extends ControllerBase {
           'value' => $soli['info'],
           'format' => 'full_html',
         ]
+        'field_specialties' => $specialties;
       ]);
       $node->save();
 
