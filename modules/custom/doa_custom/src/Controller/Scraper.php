@@ -326,7 +326,7 @@ class Scraper extends ControllerBase {
           'value' => $soli['info'],
           'format' => 'full_html',
         ],
-        'field_specialties' => $specialties;
+        'field_specialties' => $specialties,
       ]);
       $node->save();
 
