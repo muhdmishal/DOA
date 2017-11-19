@@ -177,9 +177,9 @@ class Scraper extends ControllerBase {
 
     $baseurl = "http://www.solicitorscentral.co.uk/location-search/";
     $detailurl = "http://www.solicitorscentral.co.uk/";
-    for ($i=1; $i <= $page_num ; $i++) {
+    for ($m=1; $m <= $page_num ; $m++) {
       $mainch = curl_init();
-      curl_setopt ($mainch, CURLOPT_URL, $baseurl.$scraper_id);
+      curl_setopt ($mainch, CURLOPT_URL, $baseurl.$scraper_id.'/'.$m);
       curl_setopt ($mainch, CURLOPT_CONNECTTIMEOUT, 5);
       curl_setopt ($mainch, CURLOPT_RETURNTRANSFER, true);
       $maincontents = curl_exec($mainch);
