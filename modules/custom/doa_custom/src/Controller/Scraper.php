@@ -289,6 +289,7 @@ class Scraper extends ControllerBase {
         'field_address_locality' => $soli['locality'],
         'field_address_region' => $soli['region'],
         'field_call' => $soli['phone'],
+        'field_email' => $soli['email'],
         'field_website' => [
           'uri'  => $soli['website'],
         ],
