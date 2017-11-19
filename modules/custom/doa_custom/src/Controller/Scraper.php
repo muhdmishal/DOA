@@ -203,7 +203,9 @@ class Scraper extends ControllerBase {
       $itemdetails = explode( '<a class="resultItemCompanyTitle" href="' , $subcontent );
       $items = explode( '"><strong>' , $itemdetails[1] );
       $link = $items[0];
-      print_r($link);
+
+
+      print_r($items);
       die;
 
     }
