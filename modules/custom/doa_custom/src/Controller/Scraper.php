@@ -196,8 +196,8 @@ class Scraper extends ControllerBase {
 
     $i = 0;
     foreach ($subcontents as $subcontent) {
-      if ($i == 0) {
-        $i = 1;
+      if ($i == 0 || $i == 1) {
+        $i++;
         continue;
       }
 
@@ -268,6 +268,15 @@ class Scraper extends ControllerBase {
       if (!is_string($demaincontents) || !strlen($demaincontents)) {
         $demaincontents = '';
       }
+
+      $detailitems = explode( '<div class="compDetailBio">' , $demaincontents );
+      $detailitems = explode( '</div>' , $detailitems[1] );
+      $soli['info'] = $links;
+
+      $detailitems = explode( '<div class="compDetailOpeningHours">' , $demaincontents );
+      $detailitems = explode( '<br>
+                        </div>' , $detailitems[1] );
+      $soli['info'] = $links;
 
       print_r($demaincontents);
       die;
