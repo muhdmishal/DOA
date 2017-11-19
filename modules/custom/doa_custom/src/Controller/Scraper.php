@@ -241,8 +241,8 @@ class Scraper extends ControllerBase {
       $j = 0;
       $links = array();
       foreach ($items as $areas) {
-        if ($i == 0) {
-          $i = 1;
+        if ($j == 0) {
+          $j = 1;
           continue;
         }
         $items = explode( '">' , $areas );
