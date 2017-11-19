@@ -211,8 +211,41 @@ class Scraper extends ControllerBase {
       $items = explode( '</div>' , $items[1] );
       $soli['address'] = $items[0];
 
+      $items = explode( '<strong><span class="resultItemDetailSpan">Phone:</span></strong>' , $itemdetails[1] );
+      $items = explode( '</div>' , $items[1] );
+      $soli['phone'] = $items[0];
+
+      $items = explode( '<strong><span class="resultItemDetailSpan">Website:</span></strong>' , $itemdetails[1] );
+      $items = explode( '</div>' , $items[1] );
+      $soli['website'] = $items[0];
+
+      $items = explode( '<strong><span class="resultItemDetailSpan">Email:</span></strong>' , $itemdetails[1] );
+      $items = explode( '</div>' , $items[1] );
+      $soli['email'] = $items[0];
+
+      $items = explode( '<strong><span class="resultItemDetailSpan">Facebook:</span></strong>' , $itemdetails[1] );
+      $items = explode( '</div>' , $items[1] );
+      $soli['facebook'] = $items[0];
+
+      $items = explode( '<strong><span class="resultItemDetailSpan">Twitter:</span></strong>' , $itemdetails[1] );
+      $items = explode( '</div>' , $items[1] );
+      $soli['twitter'] = $items[0];
+
+      $items = explode( '<strong><span class="resultItemDetailSpan">LinkedIn:</span></strong>' , $itemdetails[1] );
+      $items = explode( '</div>' , $items[1] );
+      $soli['linkedin'] = $items[0];
+
+      $items = explode( '<span class="resultKeywords"' , $itemdetails[1] );
+
+      print_r($items[1]);
+      die;
+
+      $items = explode( '</div>' , $items[1] );
+      $soli['linkedin'] = $items[0];
+
       print_r($soli);
       die;
+
 
     }
     print_r($subcontents);
