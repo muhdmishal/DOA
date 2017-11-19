@@ -5,6 +5,7 @@ namespace Drupal\doa_custom\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Component\Utility;
 use \Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * MediaAdd Class. Contains the methods for playlist/timeline/quote creation.
@@ -282,6 +283,23 @@ class Scraper extends ControllerBase {
       $detailitems = explode( '<div class="compDetailOpeningHours">' , $demaincontents );
       $detailitems = explode( '<div class="compDetailH2Upper">' , $detailitems[1] );
       $soli['opening'] = $detailitems[0];
+
+      foreach ($soli['expertice'] as $expertice) {
+        if ($terms = taxonomy_term_load_multiple_by_name($expertice, 'specialties')) {
+          // Only use the first term returned; there should only be one anyways if we do this right.
+          $term = reset($terms);
+
+          print_r($term->id());
+          die;
+        }
+        else {
+          $term = Term::create([
+            'name' => $term_value,
+            'vid' => 'specialties',
+          ]);
+          $term->save();
+        }
+      }
 
       $node = Node::create([
         'type' => 'solicitors',
