@@ -249,16 +249,10 @@ class Scraper extends ControllerBase {
         $items = explode( '</a>' , $items[1] );
         $links[] = $items[0];
       }
-
-      print_r($links);
-      die;
-
-      $items = explode( '</div>' , $items[1] );
-      $soli['linkedin'] = $items[0];
+      $soli['expertice'] = $links;
 
       print_r($soli);
       die;
-
 
     }
     print_r($subcontents);
