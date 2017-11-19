@@ -276,7 +276,7 @@ class Scraper extends ControllerBase {
       $detailitems = explode( '<div class="compDetailOpeningHours">' , $demaincontents );
       $detailitems = explode( '<br>
                         </div>' , $detailitems[1] );
-      $soli['info'] = $links;
+      $soli['opening'] = $links;
 
       print_r($demaincontents);
       die;
