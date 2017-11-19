@@ -13,7 +13,7 @@ doa_custom.correctioncourt:
   requirements:
     _permission: 'access content'
 doa_custom.soli_scrapper:
-  path: 'import/soli/{scraper_id}'
+  path: 'import/soli/{scraper_id}/{page_num}'
   defaults:
     _title: 'scraper'
     _controller: '\Drupal\doa_custom\Controller\Scraper::soliScraper'

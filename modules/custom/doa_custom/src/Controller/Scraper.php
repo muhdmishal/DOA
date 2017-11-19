@@ -171,174 +171,173 @@ class Scraper extends ControllerBase {
   }
 
 
-  public function soliScraper($scraper_id) {
+  public function soliScraper($scraper_id, $page_num) {
+
+    $added = 0;
 
     $baseurl = "http://www.solicitorscentral.co.uk/location-search/";
     $detailurl = "http://www.solicitorscentral.co.uk/";
-
-    $mainch = curl_init();
-    curl_setopt ($mainch, CURLOPT_URL, $baseurl.$scraper_id);
-    curl_setopt ($mainch, CURLOPT_CONNECTTIMEOUT, 5);
-    curl_setopt ($mainch, CURLOPT_RETURNTRANSFER, true);
-    $maincontents = curl_exec($mainch);
-    if (curl_errno($mainch)) {
-      echo curl_error($mainch);
-      echo "\n<br />";
-      $maincontents = '';
-    } else {
-      curl_close($mainch);
-    }
-
-    if (!is_string($maincontents) || !strlen($maincontents)) {
-      $maincontents = '';
-    }
-
-    $subcontents = explode( '<div class="resultItemOuter">' , $maincontents );
-
-    $i = 0;
-    foreach ($subcontents as $subcontent) {
-      if ($i == 0 || $i == 1) {
-        $i++;
-        continue;
-      }
-
-      $itemdetails = explode( '<a class="resultItemCompanyTitle" href="' , $subcontent );
-      $items = explode( '"><strong>' , $itemdetails[1] );
-      $soli['link'] = $items[0];
-
-      $items = explode( '</strong>' , $items[1] );
-      $soli['title'] = str_replace("&amp;","&", $items[0]);;
-
-      $items = explode( '<strong><span class="resultItemDetailSpan">Address:</span></strong>' , $itemdetails[1] );
-      $items = explode( '</div>' , $items[1] );
-      $soli['address'] = $items[0];
-
-      $address = explode(',', $soli['address']);
-      $soli['street'] = $address[0];
-      $soli['locality'] = $address[1];
-      $soli['region'] = $address[2];
-
-
-      $items = explode( '<strong><span class="resultItemDetailSpan">Phone:</span></strong>' , $itemdetails[1] );
-      $items = explode( '</div>' , $items[1] );
-      $soli['phone'] = $items[0];
-
-      $items = explode( '<strong><span class="resultItemDetailSpan">Website:</span></strong>' , $itemdetails[1] );
-      $items = explode( '</div>' , $items[1] );
-      $soli['website'] = $items[0];
-
-      $items = explode( '<strong><span class="resultItemDetailSpan">Email:</span></strong>' , $itemdetails[1] );
-      $items = explode( '</div>' , $items[1] );
-      $soli['email'] = $items[0];
-
-      $items = explode( '<strong><span class="resultItemDetailSpan">Facebook:</span></strong>' , $itemdetails[1] );
-      $items = explode( '</div>' , $items[1] );
-      $soli['facebook'] = $items[0];
-
-      $items = explode( '<strong><span class="resultItemDetailSpan">Twitter:</span></strong>' , $itemdetails[1] );
-      $items = explode( '</div>' , $items[1] );
-      $soli['twitter'] = $items[0];
-
-      $items = explode( '<strong><span class="resultItemDetailSpan">LinkedIn:</span></strong>' , $itemdetails[1] );
-      $items = explode( '</div>' , $items[1] );
-      $soli['linkedin'] = $items[0];
-
-      $items = explode( '<span class="resultKeywords"' , $itemdetails[1] );
-      $items = explode( '<a href="' , $items[1] );
-
-      $j = 0;
-      $links = array();
-      foreach ($items as $areas) {
-        if ($j == 0) {
-          $j = 1;
-          continue;
-        }
-        $items = explode( '">' , $areas );
-        $items = explode( '</a>' , $items[1] );
-        $links[] = $items[0];
-      }
-      $soli['expertice'] = $links;
-
-      $demainch = curl_init();
-      curl_setopt ($demainch, CURLOPT_URL, $detailurl.$soli['link']);
-      curl_setopt ($demainch, CURLOPT_CONNECTTIMEOUT, 5);
-      curl_setopt ($demainch, CURLOPT_RETURNTRANSFER, true);
-      $demaincontents = curl_exec($demainch);
-      if (curl_errno($demainch)) {
-        echo curl_error($demainch);
+    for ($i=1; $i <= $page_num ; $i++) {
+      $mainch = curl_init();
+      curl_setopt ($mainch, CURLOPT_URL, $baseurl.$scraper_id);
+      curl_setopt ($mainch, CURLOPT_CONNECTTIMEOUT, 5);
+      curl_setopt ($mainch, CURLOPT_RETURNTRANSFER, true);
+      $maincontents = curl_exec($mainch);
+      if (curl_errno($mainch)) {
+        echo curl_error($mainch);
         echo "\n<br />";
         $maincontents = '';
       } else {
-        curl_close($demainch);
+        curl_close($mainch);
       }
 
-      if (!is_string($demaincontents) || !strlen($demaincontents)) {
-        $demaincontents = '';
+      if (!is_string($maincontents) || !strlen($maincontents)) {
+        $maincontents = '';
       }
 
-      $detailitems = explode( '<div class="compDetailBio">' , $demaincontents );
-      $detailitems = explode( '</div>' , $detailitems[1] );
-      $soli['info'] = $detailitems[0];
+      $subcontents = explode( '<div class="resultItemOuter">' , $maincontents );
 
-      $detailitems = explode( '<div class="compDetailOpeningHours">' , $demaincontents );
-      $detailitems = explode( '<div class="compDetailH2Upper">' , $detailitems[1] );
-      $soli['opening'] = $detailitems[0];
-
-      $specialties = array();
-
-      foreach ($soli['expertice'] as $expertice) {
-        if ($terms = taxonomy_term_load_multiple_by_name($expertice, 'specialties')) {
-          // Only use the first term returned; there should only be one anyways if we do this right.
-          $term = reset($terms);
-
-          $specialties[] = $term->id();
+      $i = 0;
+      foreach ($subcontents as $subcontent) {
+        if ($i == 0 || $i == 1) {
+          $i++;
+          continue;
         }
-        else {
-          $term = Term::create([
-            'name' => $expertice,
-            'vid' => 'specialties',
-          ]);
-          $term->save();
-          $specialties[] = $term->id();
+
+        $itemdetails = explode( '<a class="resultItemCompanyTitle" href="' , $subcontent );
+        $items = explode( '"><strong>' , $itemdetails[1] );
+        $soli['link'] = $items[0];
+
+        $items = explode( '</strong>' , $items[1] );
+        $soli['title'] = str_replace("&amp;","&", $items[0]);;
+
+        $items = explode( '<strong><span class="resultItemDetailSpan">Address:</span></strong>' , $itemdetails[1] );
+        $items = explode( '</div>' , $items[1] );
+        $soli['address'] = $items[0];
+
+        $address = explode(',', $soli['address']);
+        $soli['street'] = $address[0];
+        $soli['locality'] = $address[1];
+        $soli['region'] = $address[2];
+
+
+        $items = explode( '<strong><span class="resultItemDetailSpan">Phone:</span></strong>' , $itemdetails[1] );
+        $items = explode( '</div>' , $items[1] );
+        $soli['phone'] = $items[0];
+
+        $items = explode( '<strong><span class="resultItemDetailSpan">Website:</span></strong>' , $itemdetails[1] );
+        $items = explode( '</div>' , $items[1] );
+        $soli['website'] = $items[0];
+
+        $items = explode( '<strong><span class="resultItemDetailSpan">Email:</span></strong>' , $itemdetails[1] );
+        $items = explode( '</div>' , $items[1] );
+        $soli['email'] = $items[0];
+
+        $items = explode( '<strong><span class="resultItemDetailSpan">Facebook:</span></strong>' , $itemdetails[1] );
+        $items = explode( '</div>' , $items[1] );
+        $soli['facebook'] = $items[0];
+
+        $items = explode( '<strong><span class="resultItemDetailSpan">Twitter:</span></strong>' , $itemdetails[1] );
+        $items = explode( '</div>' , $items[1] );
+        $soli['twitter'] = $items[0];
+
+        $items = explode( '<strong><span class="resultItemDetailSpan">LinkedIn:</span></strong>' , $itemdetails[1] );
+        $items = explode( '</div>' , $items[1] );
+        $soli['linkedin'] = $items[0];
+
+        $items = explode( '<span class="resultKeywords"' , $itemdetails[1] );
+        $items = explode( '<a href="' , $items[1] );
+
+        $j = 0;
+        $links = array();
+        foreach ($items as $areas) {
+          if ($j == 0) {
+            $j = 1;
+            continue;
+          }
+          $items = explode( '">' , $areas );
+          $items = explode( '</a>' , $items[1] );
+          $links[] = $items[0];
         }
+        $soli['expertice'] = $links;
+
+        $demainch = curl_init();
+        curl_setopt ($demainch, CURLOPT_URL, $detailurl.$soli['link']);
+        curl_setopt ($demainch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt ($demainch, CURLOPT_RETURNTRANSFER, true);
+        $demaincontents = curl_exec($demainch);
+        if (curl_errno($demainch)) {
+          echo curl_error($demainch);
+          echo "\n<br />";
+          $maincontents = '';
+        } else {
+          curl_close($demainch);
+        }
+
+        if (!is_string($demaincontents) || !strlen($demaincontents)) {
+          $demaincontents = '';
+        }
+
+        $detailitems = explode( '<div class="compDetailBio">' , $demaincontents );
+        $detailitems = explode( '</div>' , $detailitems[1] );
+        $soli['info'] = $detailitems[0];
+
+        $detailitems = explode( '<div class="compDetailOpeningHours">' , $demaincontents );
+        $detailitems = explode( '<div class="compDetailH2Upper">' , $detailitems[1] );
+        $soli['opening'] = $detailitems[0];
+
+        $specialties = array();
+
+        foreach ($soli['expertice'] as $expertice) {
+          if ($terms = taxonomy_term_load_multiple_by_name($expertice, 'specialties')) {
+            // Only use the first term returned; there should only be one anyways if we do this right.
+            $term = reset($terms);
+
+            $specialties[] = $term->id();
+          }
+          else {
+            $term = Term::create([
+              'name' => $expertice,
+              'vid' => 'specialties',
+            ]);
+            $term->save();
+            $specialties[] = $term->id();
+          }
+        }
+
+        $node = Node::create([
+          'type' => 'solicitors',
+          'title' => $soli['title'],
+          'field_address_locality' => $soli['locality'],
+          'field_address_region' => $soli['region'],
+          'field_call' => trim($soli['phone']),
+          'field_email' => trim($soli['email']),
+          'field_website' => trim($soli['website']),
+          'field_facebook' => trim($soli['facebook']),
+          'field_twitter' => trim($soli['twitter']),
+          'field_linkedin' => trim($soli['linkedin']),
+          'field_street_address' => [
+            'value' => $soli['street'],
+            'format' => 'full_html',
+          ],
+          'field_opening' => [
+            'value' => $soli['opening'],
+            'format' => 'full_html',
+          ],
+          'body' => [
+            'value' => $soli['info'],
+            'format' => 'full_html',
+          ],
+          'field_specialties' => $specialties,
+        ]);
+        $node->save();
+        $added++;
+
       }
-
-      $node = Node::create([
-        'type' => 'solicitors',
-        'title' => $soli['title'],
-        'field_address_locality' => $soli['locality'],
-        'field_address_region' => $soli['region'],
-        'field_call' => trim($soli['phone']),
-        'field_email' => trim($soli['email']),
-        'field_website' => trim($soli['website']),
-        'field_facebook' => trim($soli['facebook']),
-        'field_twitter' => trim($soli['twitter']),
-        'field_linkedin' => trim($soli['linkedin']),
-        'field_street_address' => [
-          'value' => $soli['street'],
-          'format' => 'full_html',
-        ],
-        'field_opening' => [
-          'value' => $soli['opening'],
-          'format' => 'full_html',
-        ],
-        'body' => [
-          'value' => $soli['info'],
-          'format' => 'full_html',
-        ],
-        'field_specialties' => $specialties,
-      ]);
-      $node->save();
-
-      print_r('working');
-      die;
-
     }
 
-
-
     $element = array(
-      '#markup' => "saved : " . $num_saved,
+      '#markup' => "saved : " . $added,
     );
     return $element;
   }
