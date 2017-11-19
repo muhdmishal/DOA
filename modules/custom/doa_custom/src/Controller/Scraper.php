@@ -294,7 +294,7 @@ class Scraper extends ControllerBase {
         }
         else {
           $term = Term::create([
-            'name' => $term_value,
+            'name' => $expertice,
             'vid' => 'specialties',
           ]);
           $term->save();
