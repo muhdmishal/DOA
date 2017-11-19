@@ -278,7 +278,7 @@ class Scraper extends ControllerBase {
                         </div>' , $detailitems[1] );
       $soli['opening'] = $links;
 
-      print_r($demaincontents);
+      print_r($soli);
       die;
 
     }
