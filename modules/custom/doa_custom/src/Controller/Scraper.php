@@ -211,7 +211,7 @@ class Scraper extends ControllerBase {
       $items = explode( '</div>' , $items[1] );
       $soli['address'] = $items[0];
 
-      print_r($soli);
+      print_r($items);
       die;
 
     }
