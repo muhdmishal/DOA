@@ -19,7 +19,7 @@ class SendEmail {
 
     $send_mail = new \Drupal\Core\Mail\Plugin\Mail\PhpMail(); // this is used to send HTML emails
     $from = 'info@drivingoffenceadvice.co.uk';
-    $to = 'muhdmishal@gmail.com';
+    $to = 'simonjaletta@googlemail.com';
     $message['headers'] = array(
     'content-type' => 'text/html',
     'MIME-Version' => '1.0',
