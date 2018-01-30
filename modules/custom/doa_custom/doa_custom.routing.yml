@@ -22,7 +22,7 @@ doa_custom.soli_scrapper:
 doa_custom.mail_send:
   path: '/emailer'
   defaults:
-    _form: '\Drupal\doa_custom\Form\SyncChatForm'
+    _form: '\Drupal\doa_custom\Form\EmailerForm'
     _title: 'Chat sync'
   requirements:
     _permission: 'access content'
