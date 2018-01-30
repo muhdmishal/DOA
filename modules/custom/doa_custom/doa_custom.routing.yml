@@ -19,3 +19,10 @@ doa_custom.soli_scrapper:
     _controller: '\Drupal\doa_custom\Controller\Scraper::soliScraper'
   requirements:
     _permission: 'access content'
+doa_custom.mail_send:
+  path: '/emailer'
+  defaults:
+    _form: '\Drupal\doa_custom\Form\SyncChatForm'
+    _title: 'Chat sync'
+  requirements:
+    _permission: 'access content'
