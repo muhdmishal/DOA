@@ -29,7 +29,7 @@ class SendEmail {
     $message['to'] = $to;
     $message['subject'] = "Test mail from the DOA";
 
-    if(($Content = file_get_contents("https://drivingoffenceadvice.co.uk/list-your-firm")) === false) {
+    if(($Content = file_get_contents("http://drivingoffenceadvice.co.uk/list-your-firm")) === false) {
         $Content = "";
     }
 
