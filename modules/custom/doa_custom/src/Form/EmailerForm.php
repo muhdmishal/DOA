@@ -3,9 +3,9 @@ namespace Drupal\doa_custom\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 /**
- * Class SyncChatForm.
+ * Class EmailerForm.
  *
- * @package Drupal\gr_chat_sync\Form
+ * @package Drupal\doa_custom\Form
  */
 class EmailerForm extends FormBase {
   /**
