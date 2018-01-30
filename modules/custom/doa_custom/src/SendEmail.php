@@ -18,16 +18,16 @@ class SendEmail {
     // other error management should be handled using 'results'.
 
     $send_mail = new \Drupal\Core\Mail\Plugin\Mail\PhpMail(); // this is used to send HTML emails
-    $from = 'muhdmishal@gamil.com';
+    $from = 'info@drivingoffenceadvice.co.uk';
     $to = 'muhdmishal@gmail.com';
     $message['headers'] = array(
     'content-type' => 'text/html',
     'MIME-Version' => '1.0',
     'reply-to' => $from,
-    'from' => 'Muhammed Mishal <'.$from.'>'
+    'from' => 'Driving Offence Advice <'.$from.'>'
     );
     $message['to'] = $to;
-    $message['subject'] = "Test mail from the DOA";
+    $message['subject'] = "List you firm in Driving Offence Advice";
 
     if(($Content = file_get_contents("https://drivingoffenceadvice.co.uk/list-your-firm")) === false) {
         $Content = "";
